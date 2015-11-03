@@ -9,6 +9,7 @@
     "angular-ui-router": "latest",
   	"angular-sanitize": "latest",
   	"body-parser": "latest",
+    "bower": "latest",
   	"cookie-parser": "latest",
   	"express": "latest",
   	"express-session": "latest",
@@ -20,6 +21,7 @@
   },
   "scripts": {
     "start": "node index.js",
+    "postinstall": "./node_modules/bower/bin/bower install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "mr.jasu",
