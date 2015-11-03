@@ -1,0 +1,26 @@
+{
+  "name": "shady-oaks",
+  "version": "1.0.0",
+  "description": "socr lives here",
+  "main": "index.js",
+  "dependencies": {
+  	"angular": "latest",
+  	"angular-cookies": "latest",
+    "angular-ui-router": "latest",
+  	"angular-sanitize": "latest",
+  	"body-parser": "latest",
+  	"cookie-parser": "latest",
+  	"express": "latest",
+  	"express-session": "latest",
+  	"mongoose": "latest",
+  	"morgan": "latest",
+  	"passport": "latest",
+  	"passport-facebook": "latest",
+  	"socket.io": "latest"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mr.jasu",
+  "license": "ISC"
+}

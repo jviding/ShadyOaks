@@ -1,0 +1,28 @@
+{
+  "name": "shady-oaks",
+  "description": "socr lives here",
+  "main": "app.js",
+  "authors": [
+    "mr.jasu"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.4.0",
+    "bootstrap": "^3.2.0",
+    "angular-cookies": "^1.4.0",
+    "angular-ui-router": "latest",
+    "angular-sanitize": "^1.4.0",
+    "socket.io-client": "latest"
+  },
+  "moduleType": [
+    "node"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

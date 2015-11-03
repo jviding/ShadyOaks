@@ -1,0 +1,25 @@
+<html lang="en">
+    <head>
+        <title>AngularJS Basic Example</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    </head>
+    <body ng-app="App">
+
+        <div ui-view="header"></div>
+        <div ui-view="content"></div>
+        <div ui-view="footer"></div>
+
+        <!-- Scripts -->
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="bower_components/socket.io-client/socket.io.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+        <!-- Controllers -->
+        <script src="app.js"></script>
+        <script src="controllers/drawCtrl.js"></script>
+        <script src="controllers/headerCtrl.js"></script>
+        <script src="controllers/homeCtrl.js"></script>
+    </body>
+</html>
