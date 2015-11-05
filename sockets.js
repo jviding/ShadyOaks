@@ -11,6 +11,13 @@ module.exports = function Sockets(io) {
 			// to everyone except the originating client.
 			socket.broadcast.emit('moving', data);
 		});
+		socket.on('reset', function () {
+			socket.broadcast.emit('reset');
+		});
+		socket.on('message', function (message) {
+			console.log('hehehehe');
+			socket.emit('message', message)
+		});
   	});
 
 };

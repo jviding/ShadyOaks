@@ -1,0 +1,85 @@
+.chatbox {
+	position: absolute;
+	background: #F8F8F8;
+	right: 0px;
+	top: 0px;
+	height: 99%;
+	width: 23%;
+	border:1px solid #d3d3d3;
+}
+.chatbox .header {
+	margin-top: 1%;
+	font-size: 200%;
+}
+.chatbox .sendBtn {
+	position: absolute;
+	bottom: 3px;
+	right: 1%;
+	width: 11%;
+	height: 26px;
+}
+.chatbox .writeMsg {
+	position: absolute;
+	bottom: 3px;
+	left: 1%;
+	width: 87%;
+	height: 26px;
+}
+.chatbox .msgBox {
+	position: absolute;
+	background: #FFF;
+	top: 7%;
+	bottom: 23px;
+	right: 3px;
+	left: 3px;
+	border:1px solid #d3d3d3;
+	overflow: hidden;
+	overflow-y: scroll;
+}
+.chatbox ul {
+	padding-left: 0px;
+}
+.chatbox .msgBox li:nth-child(even) { background: #F8F8F8  }
+.chatbox .msgBox li:nth-child(odd) { background: #FFF }
+.drawboard {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+}
+.palette {
+	position: absolute;
+	background: #F8F8F8;
+	border:2px black;
+	border-style: solid solid solid none;
+	left: 0px;
+	top: 20px;
+	height: 135px;
+	width: 40px;
+	z-index: 1;
+	border-radius: 0 8px 8px 0;
+  	display: flex;
+  	justify-content: center;
+  	align-items; center;
+}
+.palette #colors {
+	position: absolute;
+	left: 5px;
+	top: 20px;
+}
+.palette #colors .btn.black { background: black; }
+.palette #colors .btn.white { background: white; }
+.palette #colors .btn.blue { background: blue; }
+.palette #colors .btn.red { background: red; }
+.palette #colors .btn.yellow { background: yellow; }
+.palette .btn.clear {
+	position: absolute;
+	left: 5px;
+	bottom: 5px;
+	width: 10px;
+	height: 24px;
+}
+.palette .btn.clear #trash {
+	position: absolute;
+	left: 4px;
+	top: 4px;
+}

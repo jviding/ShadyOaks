@@ -3,28 +3,65 @@
 angular.module('App').controller('drawCtrl', function ($scope) {
 	//connect socket
 	var socket = io.connect();
-	socket.emit('hay', 'teksti');
 	//Check if canvas works on user's browser
 	if(!('getContext' in document.createElement('canvas'))){
 		alert('Sorry, it looks like your browser does not support canvas!');
 		return false;
 	}
 
+	//Draw glyphicon color + color to draw with
+	var color = '#000000';
+	$scope.glyStyle = { 'color': '#000000'};
+	$scope.newColor = function (newColor) {
+		color = newColor;
+		$scope.glyStyle = { 'color':newColor };
+	};
+
+	//Message handlers
+	$scope.messages = ['mesaage','mesa'];
+	$scope.send = function (message) {
+		if (message) {
+			socket.emit('message', message);
+			$scope.message = '';
+		}
+	};
+	socket.on('message', function (message) {
+		$scope.messages.push(message);
+	});
+
+
 	$(document).ready(function() {
 		
 		var canvas = $('#board');
-		var width = $(window).width() * 0.75; 
-		var height = $(window).height();
-		canvas.width(width);
-		canvas.height(height);
 		var ctx = canvas[0].getContext('2d');
-		ctx.canvas.width = width;
-		ctx.canvas.height = height;
 		var image = new Image();
 		image.src = '../views/images/LoLMap.jpg';
+		var chatbox = $('#chatbox');
+
 		image.onload = function(){
+			var width = ( ($(window).height() * 0.99) / image.height ) * image.width;
+			var height = $(window).height() * 0.99;
+			if (width > ($(window).width() * 0.75)) {
+				width = $(window).width() * 0.75;
+				height = $(window).height() * 0.75;
+			}
+			canvas.width(width);
+			canvas.height(height);
+			ctx.canvas.width = width;
+			ctx.canvas.height = height;
 			ctx.drawImage(image,0,0,width,height);
+			chatbox.width($(window).width() - width - 10);
+
+			$scope.clearBoard = function () {
+				ctx.drawImage(image,0,0,width,height);
+				socket.emit('reset');
+			};
+
+			socket.on('reset', function () {
+				ctx.drawImage(image,0,0,width,height);
+			});
 		};
+
 		var doc = $(document);
 
 		var clients = {};
@@ -53,6 +90,7 @@ angular.module('App').controller('drawCtrl', function ($scope) {
 					'x': e.pageX,
 					'y': e.pageY,
 					'drawing': drawing,
+					'color': color,
 					'id': id
 				});
 				lastEmit = $.now();
@@ -61,16 +99,19 @@ angular.module('App').controller('drawCtrl', function ($scope) {
 		// Draw a line for the current user's movement, as it is
 		// not received in the socket.on('moving') event above
 			if(drawing){
-				drawLine(prev.x, prev.y, e.pageX, e.pageY);
+				drawLine(prev.x, prev.y, e.pageX, e.pageY, color);
 				prev.x = e.pageX;
 				prev.y = e.pageY;
 			}
 		});
 
-		function drawLine(fromx, fromy, tox, toy){
+		function drawLine(fromx, fromy, tox, toy, drawColor){
+			ctx.beginPath();
 			ctx.moveTo(fromx, fromy);
 			ctx.lineTo(tox, toy);
+			ctx.strokeStyle = drawColor;
 			ctx.stroke();
+			ctx.closePath();
 		}
 
 		socket.on('moving', function (data) {
@@ -87,7 +128,7 @@ angular.module('App').controller('drawCtrl', function ($scope) {
 			if(data.drawing && clients[data.id]){
 				// Draw a line on the canvas. clients[data.id] holds
 				// the previous position of this user's mouse pointer
-				drawLine(clients[data.id].x, clients[data.id].y, data.x, data.y);
+				drawLine(clients[data.id].x, clients[data.id].y, data.x, data.y, data.color);
 			}
 			// Saving the current client state
 			clients[data.id] = data;

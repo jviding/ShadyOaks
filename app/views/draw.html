@@ -2,9 +2,38 @@
 <!-- The mouse pointers will be created here -->
 </div>
 
-<canvas id="board" style="border:1px solid #d3d3d3;">
-Your browser does not support the HTML5 canvas tag.
-</canvas>
+<div class="palette">
+	<p><span class="glyphicon glyphicon-pencil" ng-style="glyStyle" aria-hidden="true"></span></p>
+	<div id="colors" class="btn-group-vertical">
+		<button type="button" class="btn black" ng-click="newColor('#000000')"></button>
+	  	<button type="button" class="btn white" ng-click="newColor('#FFFFFF')"></button>
+	  	<button type="button" class="btn blue" ng-click="newColor('#0000FF')"></button>
+	  	<button type="button" class="btn red" ng-click="newColor('#FF0000')"></button>
+	  	<button type="button" class="btn yellow" ng-click="newColor('#FFFF00')"></button>
+	</div>
+	<button type="button" class="btn clear" ng-click="clearBoard()">
+		<span id="trash" class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+	</button>
+</div>
+
+<div class="drawboard">
+	<canvas id="board" style="position: relative;">
+		Your browser does not support the HTML5 canvas tag.
+	</canvas>
+</div>
+
+<div class="chatbox" id="chatbox">
+	<p class="header" align="center">Chat</p>
+	<ul class="msgBox" id="msgBox" style="list-style-type:none">
+	  <li ng-repeat="message in messages">{{message}}</li>
+	</ul>
+	<form>
+		<input class="writeMsg" type="text" ng-model="message" placeholder=" Say...">
+		<p><button class="sendBtn" ng-click="send(message)">Send</button></p>
+	</form>
+</div>
+
+<!-- Color Palette, Chat window, People Online -->
 
 <!--<p><button onclick="myCanvas()">Try it</button></p>-->
 
