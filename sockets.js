@@ -15,8 +15,7 @@ module.exports = function Sockets(io) {
 			socket.broadcast.emit('reset');
 		});
 		socket.on('message', function (message) {
-			console.log('hehehehe');
-			socket.emit('message', message)
+			socket.broadcast.emit('message', message)
 		});
   	});
 

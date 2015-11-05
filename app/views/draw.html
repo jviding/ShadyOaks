@@ -24,9 +24,7 @@
 
 <div class="chatbox" id="chatbox">
 	<p class="header" align="center">Chat</p>
-	<ul class="msgBox" id="msgBox" style="list-style-type:none">
-	  <li ng-repeat="message in messages">{{message}}</li>
-	</ul>
+	<ul class="msgBox" id="msgBox" style="list-style-type:none"></ul>
 	<form>
 		<input class="writeMsg" type="text" ng-model="message" placeholder=" Say...">
 		<p><button class="sendBtn" ng-click="send(message)">Send</button></p>

@@ -18,15 +18,16 @@ angular.module('App').controller('drawCtrl', function ($scope) {
 	};
 
 	//Message handlers
-	$scope.messages = ['mesaage','mesa'];
+	var messages = $('#msgBox');
 	$scope.send = function (message) {
 		if (message) {
 			socket.emit('message', message);
+			messages.append($('<li>').text(message));
 			$scope.message = '';
 		}
 	};
 	socket.on('message', function (message) {
-		$scope.messages.push(message);
+		messages.append($('<li>').text(message));
 	});
 
 
