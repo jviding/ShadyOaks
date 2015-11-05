@@ -1,8 +1,10 @@
 'use strict';
 
-angular.module('App').controller('drawCtrl', function ($scope) {
+angular.module('App').controller('drawCtrl', function ($scope, $sce) {
+
 	//connect socket
 	var socket = io.connect();
+
 	//Check if canvas works on user's browser
 	if(!('getContext' in document.createElement('canvas'))){
 		alert('Sorry, it looks like your browser does not support canvas!');
@@ -17,17 +19,42 @@ angular.module('App').controller('drawCtrl', function ($scope) {
 		$scope.glyStyle = { 'color':newColor };
 	};
 
+	//Chat login & users list
+	$scope.chosen = false;
+	$scope.username = '';
+	var users = $('#usersList');
+	$scope.chatname = function (username) {
+		if (username.length > 2 && username.length < 13) {
+			$scope.username = username;
+			$scope.chosen = true;
+			socket.emit('new user', username);
+			users.append($('<li align="center">').text(username));
+		}
+	};
+	socket.on('new user', function (username) {
+		if (users.find('#'+username).length === 0) {
+			users.append($('<li align="center" id="user'+username+'">').text(username));
+			messages.append($('<li>').text('* '+username+' has joined!'));
+		}
+	});
+	socket.on('user left', function (username) {
+		$('#usersList').find('#user'+username).remove();
+		messages.append($('<li>').text('* '+username+' has left.'));
+	});
+
 	//Message handlers
 	var messages = $('#msgBox');
 	$scope.send = function (message) {
 		if (message) {
-			socket.emit('message', message);
-			messages.append($('<li>').text(message));
+			var line = '[' + $scope.username + ']: ' + $sce.trustAsHtml(message);
+			socket.emit('message', line);
+			messages.append($('<li>').text(line));
 			$scope.message = '';
 		}
 	};
 	socket.on('message', function (message) {
-		messages.append($('<li>').text(message));
+		var line = $sce.trustAsHtml(message);
+		messages.append($('<li>').text(line));
 	});
 
 
@@ -134,6 +161,15 @@ angular.module('App').controller('drawCtrl', function ($scope) {
 			// Saving the current client state
 			clients[data.id] = data;
 			clients[data.id].updated = $.now();
+		});
+
+		$scope.showList = false;
+		$('#chatbox').find('#head').hover(function () {
+			$scope.showList = true;
+			$scope.$apply();
+		}, function () {
+			$scope.showList = false;
+			$scope.$apply();
 		});
 
 	});

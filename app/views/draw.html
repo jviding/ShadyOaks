@@ -23,12 +23,30 @@
 </div>
 
 <div class="chatbox" id="chatbox">
-	<p class="header" align="center">Chat</p>
-	<ul class="msgBox" id="msgBox" style="list-style-type:none"></ul>
-	<form>
-		<input class="writeMsg" type="text" ng-model="message" placeholder=" Say...">
-		<p><button class="sendBtn" ng-click="send(message)">Send</button></p>
-	</form>
+	<div ng-show="chosen">
+		<p class="header">Chat</p>
+		<div class="users-check">
+			<p><span id="head" class="glyphicon glyphicon-user" aria-hidden="true"></span></p>
+		</div>
+		<div ng-show="showList" class="users-checked">
+			<h5 align="center" style="padding-left: 10px; padding-right: 10px;"><u>Users online:</u></h5>
+			<ul id="usersList" style="list-style-type:none"></ul>
+		</div>
+		<ul class="msgBox" id="msgBox" style="list-style-type:none"></ul>
+		<form>
+			<input class="writeMsg" type="text" ng-model="message" placeholder=" Say...">
+			<p><button class="sendBtn" ng-click="send(message)">Send</button></p>
+		</form>
+	</div>
+	<div ng-show="!chosen">
+		<div id="choose">
+			<form>
+				<h2>Choose name:</h2>
+				<input class="writeMsg" type="text" ng-model="username" placeholder=" 3 - 12 characters">
+				<p><button class="sendBtn" ng-click="chatname(username)">OK</button></p>
+			</form>
+		</div>
+	</div>
 </div>
 
 <!-- Color Palette, Chat window, People Online -->
