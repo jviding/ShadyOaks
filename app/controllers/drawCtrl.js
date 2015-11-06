@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('App').controller('drawCtrl', function ($scope, $sce) {
+	$('body').css("background-color", "#FFFFFF");
 
 	//connect socket
 	var socket = io.connect();

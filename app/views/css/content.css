@@ -1,0 +1,61 @@
+.btn.btn-primary {
+	background: #FF9900;
+	color: #462103;
+	border: #FF6600;
+}
+.btn.btn-primary:hover {
+	background: #FFFF00;
+}
+.content {
+
+}
+.content .login {
+	position: absolute;
+	width: 100%;
+	height: 40%;
+	top: 0px;
+	text-align: center;
+	padding-top: 60px;
+	background: #552700;
+	color: #FFFFFF;
+}
+.content .login .form-signin {
+	width: 30%;
+}
+.content .row {
+	position: absolute;
+	top: 40%;
+	right: 10%;
+	left: 10%;
+	color: #AA6C39;
+}
+.login-container {
+	position: absolute;
+	width: 80%;
+	height: 60%;
+	top: 20%;
+	left: 10%;
+	padding-top: 30px;
+  	padding-bottom: 30px;
+  	margin-bottom: 30px;
+  	color: inherit;
+}
+.login-block {
+	margin: auto;
+	padding-top: 250px;
+	width: 300px;
+	color: #AA6C39;
+}
+.login-block input {
+	border: 2px solid #462103;
+	background: #AA6C39;
+	color: #462103;
+}
+.login-block .text-cream {
+	color: #AA6C39;
+}
+.login-block .text-cream.low {
+	position: relative;
+	top: 7px;
+	color: #AA6C39;
+}
