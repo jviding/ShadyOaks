@@ -28,33 +28,36 @@ angular.module('App').controller('drawCtrl', function ($scope, $sce) {
 			$scope.username = username;
 			$scope.chosen = true;
 			socket.emit('new user', username);
-			users.append($('<li align="center">').text(username));
+			users.append($('<li>').text(username));
 		}
 	};
 	socket.on('new user', function (username) {
 		if (users.find('#'+username).length === 0) {
-			users.append($('<li align="center" id="user'+username+'">').text(username));
-			messages.append($('<li>').text('* '+username+' has joined!'));
+			users.append($('<li id="user'+username+'">').text(username));
+			$('#msgBox').append($('<li>').text('* '+username+' has joined!'));
+			$('#msgBox').scrollTop($('#msgBox')[0].scrollHeight);
 		}
 	});
 	socket.on('user left', function (username) {
 		$('#usersList').find('#user'+username).remove();
-		messages.append($('<li>').text('* '+username+' has left.'));
+		$('#msgBox').append($('<li>').text('* '+username+' has left.'));
+		$('#msgBox').scrollTop($('#msgBox')[0].scrollHeight);
 	});
 
 	//Message handlers
-	var messages = $('#msgBox');
 	$scope.send = function (message) {
 		if (message) {
 			var line = '[' + $scope.username + ']: ' + $sce.trustAsHtml(message);
 			socket.emit('message', line);
-			messages.append($('<li>').text(line));
+			$('#msgBox').append($('<li>').text(line));
+			$('#msgBox').scrollTop($('#msgBox')[0].scrollHeight);
 			$scope.message = '';
 		}
 	};
 	socket.on('message', function (message) {
 		var line = $sce.trustAsHtml(message);
-		messages.append($('<li>').text(line));
+		$('#msgBox').append($('<li>').text(line));
+		$('#msgBox').scrollTop($('#msgBox')[0].scrollHeight);
 	});
 
 
@@ -91,12 +94,10 @@ angular.module('App').controller('drawCtrl', function ($scope, $sce) {
 		};
 
 		var doc = $(document);
-
 		var clients = {};
 		var cursors = {};
 		var drawing = false;
 		var id = Math.round($.now()*Math.random());
-
 		var prev = {};
 
 		canvas.on('mousedown', function(e){
@@ -123,9 +124,6 @@ angular.module('App').controller('drawCtrl', function ($scope, $sce) {
 				});
 				lastEmit = $.now();
 			}
-
-		// Draw a line for the current user's movement, as it is
-		// not received in the socket.on('moving') event above
 			if(drawing){
 				drawLine(prev.x, prev.y, e.pageX, e.pageY, color);
 				prev.x = e.pageX;
