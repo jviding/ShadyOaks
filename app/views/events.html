@@ -1,1 +1,55 @@
-events.html
+<div class="events">
+	<div class="event-options">
+		<h3 style="color: #2A1300;">Options:</h3>
+		<p><a class="btn btn-primary" ng-click="newEvent(true)" role="button">New event &nbsp;
+		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></p>
+		<p><a class="btn btn-primary" ng-click="editEvent()" role="button">Edit event &nbsp;
+		<span class="glyphicon glyphicon-scissors" aria-hidden="true"></span></a></p>
+		<p><a class="btn btn-primary" ng-click="delEvent()" role="button">Remove event &nbsp;
+		<span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></p>
+	</div>
+	<div class="block-container" ng-show="showForm">
+		<form class="login-block">
+			<h2>New Event</h2>
+			<p class="text-cream low">Date? dd/mm/yyyy</p>
+			<input type="text" class="form-control" ng-model="eventDate" placeholder="dd/mm/yyyy" autofocus>
+			<p class="text-cream low">Time?</p>
+			<input type="text" class="form-control" ng-model="eventTime" placeholder="00:00">
+			<p class="text-cream low">Topic?</p>
+			<input type="text" class="form-control" ng-model="eventTopic" placeholder="?">
+			<br>
+			<button class="btn btn-lg btn-primary btn-block" ng-click="createEvent()">Save</button>
+			<br>
+			<button class="btn btn-lg btn-primary btn-block cancel" ng-click="newEvent(false)">Cancel</button>
+		</form>
+	</div>
+	<div class="block-container" ng-show="!showForm">
+		<div class="event-block" ng-repeat="event in events">
+			<p class="date">{{event.date}}</p>
+			<p class="time">{{event.time}}</p>
+			<h3>{{event.topic}}</h3>
+			<p style="font-size: 120%;">({{event.in.length}}) in / out ({{event.out.length}})</p>
+			<div class="activity">
+				<div id="in" class="activity in">
+					<div class="player in" ng-repeat="player in event.in">&nbsp;{{player.name}}&nbsp;</div>
+				</div>
+				<div id="out" class="activity out">
+					<div class="player out" ng-repeat="player in event.out">&nbsp;{{player.name}}&nbsp;</div>
+				</div>
+			</div>
+			<div class="in-out">
+				<p><a class="btn btn-primary in" href="#/events" role="button" style="font-weight: bold;">IN</a></p>
+				<p><a class="btn btn-primary out" href="#/events" role="button" style="font-weight: bold;">OUT</a></p>
+			</div>
+			<div class="edit">
+				<p><a class="btn btn-primary edit" ng-show="showEdit" role="button">Edit</a></p>
+				<p><a class="btn btn-primary delete" ng-show="showDel" role="button">Delete</a></p>
+			</div>
+		</div>
+	</div>
+	<div class="members-list">
+		<h3 style="color: #2A1300;">Players:</h3>
+		<p ng-repeat="user in users"><a class="btn btn-primary" role="button">
+		<span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>&nbsp; {{user.name}}</a></p>
+	</div>
+</div>

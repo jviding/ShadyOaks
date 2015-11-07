@@ -26,10 +26,10 @@ angular.module('App').controller('drawCtrl', function ($scope, $sce) {
 	var users = $('#usersList');
 	$scope.chatname = function (username) {
 		if (username.length > 2 && username.length < 13) {
-			$scope.username = username;
+			$scope.username = $sce.trustAsHtml(username);
 			$scope.chosen = true;
-			socket.emit('new user', username);
-			users.append($('<li>').text(username));
+			socket.emit('new user', $scope.username);
+			users.append($('<li>').text($scope.username));
 		}
 	};
 	socket.on('new user', function (username) {

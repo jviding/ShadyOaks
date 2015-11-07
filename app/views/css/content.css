@@ -6,9 +6,6 @@
 .btn.btn-primary:hover {
 	background: #FFFF00;
 }
-.content {
-
-}
 .content .login {
 	position: absolute;
 	width: 100%;
@@ -58,4 +55,138 @@
 	position: relative;
 	top: 7px;
 	color: #AA6C39;
+}
+.register-user .login-block {
+	padding-top: 150px;
+}
+.events {
+	position: absolute;
+	width: 100%;
+}
+.events .block-container {
+	position: absolute;
+	padding-top: 95px;
+	right: 20%;
+	left: 20%;
+	background: #2A1300;
+	text-align: center;
+}
+.events .block-container .login-block {
+	text-align: left;
+	padding-top: 0;
+}
+.events .block-container .login-block .btn.btn-lg.btn-primary.btn-block.cancel {
+	color: #AA6C39;
+	border: 2px solid #AA6C39;
+	background: #2A1300;
+}
+.events .block-container .login-block .btn.btn-lg.btn-primary.btn-block.cancel:hover {
+	color: #2A1300;
+	background: #AA6C39;
+}
+.events .block-container .event-block {
+	position: relative;
+	display: inline-block;
+	width: 90%;
+	min-height: 150px;
+	margin: 1em;
+	background: #552700;
+	border-radius: 4px 4px 4px 4px;
+	color: white;
+}
+.events .block-container .event-block .activity {
+	display: inline-block;
+	position: relative;
+	width: 70%;
+}
+.events .block-container .event-block .activity.in {
+	display: inline-block;
+	position: relative;
+	vertical-align: top;
+	width: 43%;
+	background: #552700;
+}
+.events .block-container .event-block .activity.out {
+	display: inline-block;
+	position: relative;
+	vertical-align: top;
+	width: 43%;
+	background: #552700;
+}
+.events .block-container .event-block .player {
+	display: inline-block;
+	background: black;
+	padding-top: 1px;
+	margin: 2px;
+	height: 25px;
+	min-width: 50px;
+	color: #462103;
+	background: #AA6C39;
+	box-shadow: 0px 1px 1px 1px #330000;
+	border-radius: 9px 9px 9px 9px;
+	border: 3px solid #462103;
+	font-weight: bold;
+}
+.events .block-container .event-block .player.in {
+	background: #AAA239;
+}
+.events .block-container .event-block .player.out {
+	background: #AA5B39;
+}
+.events .block-container .event-block .date {
+	position: absolute;
+	padding-top: 3px;
+	padding-left: 5px;
+	font-size: 150%;
+}
+.events .block-container .event-block .time {
+	position: absolute;
+	padding-top: 30px;
+	padding-left: 60px;
+	font-size: 120%;
+}
+.events .block-container .event-block .in-out .btn.btn-primary.in {
+	position: absolute;
+	top: 20%;
+	right: 6%;
+}
+.events .block-container .event-block .in-out .btn.btn-primary.in:hover {
+	background: #006600;
+}
+.events .block-container .event-block .in-out .btn.btn-primary.out {
+	position: absolute;
+	bottom: 20%;
+	right: 5%;
+}
+.events .block-container .event-block .in-out .btn.btn-primary.out:hover {
+	background: #CC0000;
+}
+.events .block-container .event-block .edit .btn.btn-primary.edit {
+	position: absolute;
+	bottom: 20%;
+	left: 6%;
+}
+.events .block-container .event-block .edit .btn.btn-primary.delete {
+	position: absolute;
+	bottom: 20%;
+	left: 5%;
+}
+.events .event-options {
+	background: #552700;
+	position: fixed;
+	padding-top: 90px;
+	height: 100%;
+	left: 0px;
+	right: 85%;
+	padding-left: 20px;
+}
+.events .members-list {
+	background: #552700;
+	position: fixed;
+	text-align: right;
+	padding-top: 90px;
+	height: 100%;
+	right: 0px;
+	left: 85%;
+	padding-right: 20px;
 }

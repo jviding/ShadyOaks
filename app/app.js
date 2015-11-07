@@ -32,14 +32,6 @@ angular.module('App', [
 					'footer' : { templateUrl: 'views/footer.html' }
 				}
 			})
-			.state('newevent', {
-				url: '/newevent', 
-				views: {
-					'header' : { templateUrl: 'views/header.html', controller: 'headerCtrl' },
-					'content': { templateUrl: 'views/newevent.html', controller: 'newEventCtrl' },
-					'footer' : { templateUrl: 'views/footer.html' }
-				}
-			})
 			.state('register', {
 				url: '/register', 
 				views: {
