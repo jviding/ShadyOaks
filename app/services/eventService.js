@@ -2,7 +2,7 @@
 
 angular.module('App').factory('EventService', function () {
 
-	var user = { 'name': 'keke' };
+	var user = { 'name': 'Blayer' };
 	var eventModel = {
 			'date': '15.12.2015',
 			'time': '18:30',
