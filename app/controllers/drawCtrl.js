@@ -7,10 +7,10 @@ angular.module('App').controller('drawCtrl', function ($scope, $sce) {
 	var socket = io.connect();
 
 	//Check if canvas works on user's browser
-	if(!('getContext' in document.createElement('canvas'))){
-		alert('Sorry, it looks like your browser does not support canvas!');
-		return false;
-	}
+	//if(!('getContext' in document.createElement('canvas'))){
+	//	alert('Sorry, it looks like your browser does not support canvas!');
+	//	return false;
+	//}
 
 	//Draw glyphicon color + color to draw with
 	var color = '#000000';
@@ -67,16 +67,19 @@ angular.module('App').controller('drawCtrl', function ($scope, $sce) {
 		var canvas = $('#board');
 		var ctx = canvas[0].getContext('2d');
 		var image = new Image();
-		image.src = '../views/images/LoLMap.jpg';
+		//image.src = '../views/images/LoLMap.jpg';
+		image.src = '../views/images/white.jpg';
 		var chatbox = $('#chatbox');
 
 		image.onload = function(){
-			var width = ( ($(window).height() * 0.99) / image.height ) * image.width;
-			var height = $(window).height() * 0.99;
-			if (width > ($(window).width() * 0.75)) {
+			var width = screen.width;
+			var height = screen.height;
+			//var width = ( ($(window).height() * 0.99) / image.height ) * image.width;
+			//var height = $(window).height() * 0.99;
+			/*if (width > ($(window).width() * 0.75)) {
 				width = $(window).width() * 0.75;
 				height = $(window).height() * 0.75;
-			}
+			}*/
 			canvas.width(width);
 			canvas.height(height);
 			ctx.canvas.width = width;
